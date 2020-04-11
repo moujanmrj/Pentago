@@ -184,4 +184,81 @@ public class Board
             }
         }
     }
+
+    public String endGame()
+    {
+        String[][] checkWin = new String[6][6];
+        for (int i=0; i<6; i++)
+        {
+            for (int j=0; j<6; j++)
+            {
+                checkWin[i][j] ="noColor";
+            }
+        }
+
+
+        for (int i=0; i<3; i++)
+        {
+            for (int j=0; j<3; j++)
+            {
+                checkWin[i][j] = boardGame[0].getTiles()[i][j].getColor();
+            }
+        }
+        int x = 3, y = 3;
+        for (int i=0; i<3; i++)
+        {
+            y = 3;
+            for (int j=0; j<3; j++)
+            {
+                checkWin[i][y] = boardGame[1].getTiles()[i][j].getColor();
+                y++;
+            }
+        }
+        x = 2;
+        for (int i=0; i<3; i++)
+        {
+            x++;
+            for (int j=0; j<3; j++)
+            {
+                checkWin[x][j] = boardGame[2].getTiles()[i][j].getColor();
+            }
+        }
+        x = 2;
+        y = 3;
+        for (int i=0; i<3; i++)
+        {
+            x++;
+            y = 3;
+            for (int j=0; j<3; j++)
+            {
+                checkWin[x][y] = boardGame[3].getTiles()[i][j].getColor();
+                y++;
+            }
+        }
+
+
+        if ////
+            return "black";
+        else if ////
+            return "white";
+        else
+        {
+            boolean full = true;
+            for (int i=0; i<6; i++)
+            {
+                for (int j=0; j<6; j++)
+                {
+                    if (checkWin[i][j].equals("noColor"))
+                    {
+                        full = false;
+                        break;
+                    }
+                }
+            }
+            if (full)
+                return "noWinner";
+            else
+                return "continue";
+        }
+    }
 }
