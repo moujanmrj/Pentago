@@ -184,6 +184,102 @@ public class Board
             }
         }
     }
+    public boolean checkWinnerRow(String player, String[][] checkWin)
+    {
+        boolean winner = false;
+        int count = 0;
+        for (int i = 0; i < 6; i++)
+        {
+            count = 0;
+            for (int j = 0; j < 6; j++)
+            {
+                if (checkWin[i][j].equals(player))
+                {
+                    if (checkWin[i][j].equals(player))
+                        count++;
+                    else
+                        count = 0;
+                    if (count == 5)
+                    {
+                        winner = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return winner;
+    }
+
+    public boolean checkWinnerColumn(String player, String[][] checkWin)
+    {
+        boolean winner = false;
+        int count = 0;
+        for (int j = 0; j < 6; j++)
+        {
+            count = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                if (checkWin[i][j].equals(player))
+                {
+                    if (checkWin[i][j].equals(player))
+                        count++;
+                    else
+                        count = 0;
+                    if (count == 5)
+                    {
+                        winner = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return winner;
+    }
+
+
+    public boolean checkWinnerDiagonal1(String player, String[][] checkWin, int x, int y)
+    {
+        boolean winner = false;
+        int count = 0;
+        if (checkWin[x][y].equals(player) )
+        {
+            while ((x <= 5 && y <= 5))
+            {
+                if (checkWin[x][y].equals(player))
+                    count++;
+                else
+                    count = 0;
+                if (count >= 5)
+                    winner = true;
+                x++;
+                y++;
+            }
+        }
+        return winner;
+    }
+
+
+    public boolean checkWinnerDiagonal2(String player, String[][] checkWin, int x, int y)
+    {
+        boolean winner = false;
+        int count = 0;
+        if (checkWin[x][y].equals(player) )
+        {
+            while ((x <= 5 && y >= 0))
+            {
+                if (checkWin[x][y].equals(player))
+                    count++;
+                else
+                    count = 0;
+                if (count >= 5)
+                    winner = true;
+                x++;
+                y--;
+            }
+        }
+        return winner;
+    }
+
 
     public String endGame()
     {
@@ -236,10 +332,29 @@ public class Board
             }
         }
 
+        boolean winRowBlack = checkWinnerRow("black", checkWin);
+        boolean winRowWhite = checkWinnerRow("white", checkWin);
 
-        if ////
+        boolean winColumnBlack = checkWinnerColumn("black", checkWin);
+        boolean winColumnWhite = checkWinnerColumn("white", checkWin);
+
+        boolean winDiagonal1Black1 = checkWinnerDiagonal1("black", checkWin,0, 0);
+        boolean winDiagonal1Black2 = checkWinnerDiagonal1("black", checkWin,0, 1);
+        boolean winDiagonal1Black3 = checkWinnerDiagonal1("black", checkWin,1, 0);
+        boolean winDiagonal1White1 = checkWinnerDiagonal1("white", checkWin,0, 0);
+        boolean winDiagonal1White2 = checkWinnerDiagonal1("white", checkWin,0, 1);
+        boolean winDiagonal1White3 = checkWinnerDiagonal1("white", checkWin,1, 0);
+
+        boolean winDiagonal2Black1 = checkWinnerDiagonal2("black", checkWin,0, 4);
+        boolean winDiagonal2Black2 = checkWinnerDiagonal2("black", checkWin,0, 5);
+        boolean winDiagonal2Black3 = checkWinnerDiagonal2("black", checkWin,1, 5);
+        boolean winDiagonal2White1 = checkWinnerDiagonal2("white", checkWin,0, 4);
+        boolean winDiagonal2White2 = checkWinnerDiagonal2("white", checkWin,0, 5);
+        boolean winDiagonal2White3 = checkWinnerDiagonal2("white", checkWin,1, 5);
+
+        if (winRowBlack || winColumnBlack || winDiagonal1Black1 || winDiagonal1Black2 || winDiagonal1Black3 || winDiagonal2Black1 || winDiagonal2Black2 || winDiagonal2Black3)
             return "black";
-        else if ////
+        else if (winRowWhite || winColumnWhite || winDiagonal1White1 || winDiagonal1White2 || winDiagonal1White3 || winDiagonal2White1 || winDiagonal2White2 || winDiagonal2White3)
             return "white";
         else
         {
