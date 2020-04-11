@@ -11,7 +11,59 @@ public class Board
             boardGame[i] = new Tile();
         }
     }
-    
+    public void printBoard()
+    {
+        System.out.println("---------------------------------");
+        for (int i=0; i<4; i+=2)
+        {
+            if (i == 2)
+                System.out.println("*********************************");
+            printTiles(boardGame[i],boardGame[i+1]);
+        }
+        System.out.println("---------------------------------");
+    }
+
+    public void printTiles(Tile tile1,Tile tile2)
+    {
+        for (int i=0; i<3; i++)
+        {
+            for (int j=0; j<3; j++)
+            {
+                switch (tile1.getTiles()[i][j].getColor())
+                {
+                    case "noColor":
+                        System.out.print("|    ");
+                        break;
+                    case "black":
+                        System.out.print("| \u25EF ");
+                        break;
+                    case "white":
+                        System.out.print("| \u2B24 ");
+                        break;
+                }
+            }
+            System.out.print("|*");
+            for (int j=0; j<3; j++)
+            {
+                switch (tile2.getTiles()[i][j].getColor())
+                {
+                    case "noColor":
+                        System.out.print("|    ");
+                        break;
+                    case "black":
+                        System.out.print("| \u25EF ");
+                        break;
+                    case "white":
+                        System.out.print("| \u2B24 ");
+                        break;
+                }
+            }
+            System.out.print("|");
+            System.out.println();
+        }
+    }
+
+  
     public void putMarble(String player, int position,Tile tile)
     {
         int count = 1;
