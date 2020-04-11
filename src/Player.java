@@ -52,7 +52,8 @@ public class Player
 
         if (valid)
         {
-
+            board.findTile(tile, position, player);
+            board.findRotatingTile(rotatingTile, direction);
         }
     }
 }
