@@ -63,7 +63,27 @@ public class Board
         }
     }
 
-  
+    public void showMove()
+    {
+        System.out.println("-----------------------------");
+        System.out.println("|   Tile 1  | * |  Tile 2   |");
+        System.out.println("| 1 | 2 | 3 | * | 1 | 2 | 3 |");
+        System.out.println("| 4 | 5 | 6 | * | 4 | 5 | 6 |");
+        System.out.println("| 7 | 8 | 9 | * | 7 | 8 | 9 |");
+        System.out.println("|***************************|");
+        System.out.println("|   Tile 3  | * |  Tile 4   |");
+        System.out.println("| 1 | 2 | 3 | * | 1 | 2 | 3 |");
+        System.out.println("| 4 | 5 | 6 | * | 4 | 5 | 6 |");
+        System.out.println("| 7 | 8 | 9 | * | 7 | 8 | 9 |");
+        System.out.println("-----------------------------");
+        System.out.println("1) Please Enter The Number Of Tile You Want To Put Your Marble In And Then Press Enter");
+        System.out.println("2) Please Enter The Number Of Position You Want To Put Your Marble In And Then Press Enter");
+        System.out.println();
+        System.out.println("3) Please Enter The Number Of Tile You Want To Rotate And Then Press Enter");
+        System.out.println("4) And Now Please Direction Of The Rotation(type left or right) And Then Press Enter");
+        System.out.println();
+    }
+
     public void putMarble(String player, int position,Tile tile)
     {
         int count = 1;
