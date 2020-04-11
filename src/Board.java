@@ -1,8 +1,20 @@
-
+import java.util.*;
+/**
+ * this class is the board and the methods for placing marbles in the board
+ * and prints the board and changes it
+ * and has a method for the end of the game
+ *
+ * @author Moujan Mirjalili
+ * @version 2020
+ */
 public class Board
 {
+    //this field has our 4 tiles in the board
     private Tile[] boardGame;
 
+    /**
+     * this is the constructor and allocates space for the board
+     */
     public Board()
     {
         boardGame = new Tile[4];
@@ -11,6 +23,10 @@ public class Board
             boardGame[i] = new Tile();
         }
     }
+
+    /**
+     * this method prints the board with the help of printTiles methood
+     */
     public void printBoard()
     {
         System.out.println("---------------------------------");
@@ -23,6 +39,13 @@ public class Board
         System.out.println("---------------------------------");
     }
 
+    /**
+     * this method helps the PrintBoard method to print each tile
+     * in the correct position
+     *
+     * @param tile1 the tile to print
+     * @param tile2 the tile to print
+     */
     public void printTiles(Tile tile1,Tile tile2)
     {
         for (int i=0; i<3; i++)
@@ -63,6 +86,9 @@ public class Board
         }
     }
 
+    /**
+     * this method shows how to play and the shows the order for playing
+     */
     public void showMove()
     {
         System.out.println("-----------------------------");
@@ -84,6 +110,13 @@ public class Board
         System.out.println();
     }
 
+    /**
+     * this method places a marble in the given tile and position
+     *
+     * @param player the player who is playing
+     * @param position the position in the tile we want to put marble in
+     * @param tile the tile we want to put marble in
+     */
     public void putMarble(String player, int position,Tile tile)
     {
         int count = 1;
@@ -99,6 +132,13 @@ public class Board
         }
     }
 
+    /**
+     * this method find the tile we want to put our marble in out of the 4 tiles
+     *
+     * @param tile the tile we want to put marble in
+     * @param position the position in the tile we want to put marble in
+     * @param player the player who is playing
+     */
     public void findTile(int tile, int position, String player)
     {
         for (int i=0; i<4; i++)
@@ -126,6 +166,12 @@ public class Board
         }
     }
 
+    /**
+     * this method is for rotating the tile we want 90 degrees clock or non-clockwise
+     *
+     * @param direction the direction we want the tile to rotate 90 degrees clock or non-clockwise
+     * @param tile the tile we want to rotate
+     */
     public void rotateTile(String direction, Tile tile)
     {
         if (direction.equals("left"))
@@ -158,6 +204,12 @@ public class Board
         }
     }
 
+    /**
+     *  this method find the tile we want to rotate out of the 4 tiles
+     *
+     * @param tile the tile we want to rotate
+     * @param direction the direction we want the tile to rotate 90 degrees clock or non-clockwise
+     */
     public void findRotatingTile(int tile, String direction)
     {
         for (int i=0; i<4; i++)
@@ -184,6 +236,14 @@ public class Board
             }
         }
     }
+
+    /**
+     * this method checks if we have a sequence of 5 white or black marbles each row of the board
+     *
+     * @param player the player shows the color of the sequence of the 5 marbles
+     * @param checkWin is our board of marbles
+     * @return a true boolean if we have a sequence of 5 marbles it means we have a winner
+     */
     public boolean checkWinnerRow(String player, String[][] checkWin)
     {
         boolean winner = false;
@@ -210,6 +270,13 @@ public class Board
         return winner;
     }
 
+    /**
+     * this method checks if we have a sequence of 5 white or black marbles each column of the board
+     *
+     * @param player the player shows the color of the sequence of the 5 marbles
+     * @param checkWin is our board of marbles
+     * @return a true boolean if we have a sequence of 5 marbles it means we have a winner
+     */
     public boolean checkWinnerColumn(String player, String[][] checkWin)
     {
         boolean winner = false;
@@ -236,7 +303,17 @@ public class Board
         return winner;
     }
 
-
+    /**
+     * this method checks if we have a sequence of 5 white or black marbles each diameter of the board
+     * the diameters we check in this method start from the upper left corner of the board
+     * and end in the lower right corner of the board
+     *
+     * @param player the player shows the color of the sequence of the 5 marbles
+     * @param checkWin is our board of marbles
+     * @param x the x coordinate of the board in the upper left corner of the board
+     * @param y the y coordinate of the board in the lower right corner of the board
+     * @return a true boolean if we have a sequence of 5 marbles it means we have a winner
+     */
     public boolean checkWinnerDiagonal1(String player, String[][] checkWin, int x, int y)
     {
         boolean winner = false;
@@ -258,7 +335,17 @@ public class Board
         return winner;
     }
 
-
+    /**
+     * this method checks if we have a sequence of 5 white or black marbles each diameter of the board
+     * the diameters we check in this method start from the upper right corner of the board
+     * and end in the lower left corner of the board
+     *
+     * @param player the player shows the color of the sequence of the 5 marbles
+     * @param checkWin is our board of marbles
+     * @param x the x coordinate of the board in the upper right corner of the board
+     * @param y the y coordinate of the board in the lower left corner of the board
+     * @return a true boolean if we have a sequence of 5 marbles it means we have a winner
+     */
     public boolean checkWinnerDiagonal2(String player, String[][] checkWin, int x, int y)
     {
         boolean winner = false;
@@ -280,7 +367,12 @@ public class Board
         return winner;
     }
 
-
+    /**
+     * this method puts all of tiles in one unit board and checks if we have a sequence of
+     * 5 marbles in the rows, columns, and the 2 diameters
+     *
+     * @return a string which shows if the game has ended or not or if has end shows if we have a winner or not anf if we do who is the winner
+     */
     public String endGame()
     {
         String[][] checkWin = new String[6][6];
